@@ -9,7 +9,7 @@ joblib==1.2.0
 streamlit==1.24.1
 
 # Hugging Face Integration
-huggingface_hub==0.16.0
+huggingface_hub==0.16.2
 
 # Data Visualization (optional but recommended)
 matplotlib==3.7.1
