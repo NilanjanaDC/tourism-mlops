@@ -20,7 +20,7 @@ st.set_page_config(
 )
 
 # HF model repo configuration (update with your repo)
-HF_MODEL_REPO_ID = "your-username/tourism-wellness-model"
+HF_MODEL_REPO_ID = "nilanjanadevc/tourism-wellness-model"
 MODEL_FILENAME = "best_tourism_model.joblib"
 
 # =============== Load Model ===============
