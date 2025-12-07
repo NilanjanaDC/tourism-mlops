@@ -101,11 +101,11 @@ y_test.to_csv("tourism_project/model_building/y_test.csv", index=False)
 print("\nTrain/test splits saved successfully!")
 
     
-    print("\n3. Target Distribution (ProdTaken):")
-    print(df["ProdTaken"].value_counts(normalize=True).to_string())
+print("\n3. Target Distribution (ProdTaken):")
+print(df["ProdTaken"].value_counts(normalize=True).to_string())
     
-    print("\n4. Data Types:")
-    print(df.dtypes.to_string())
+print("\n4. Data Types:")
+print(df.dtypes.to_string())
 
 def clean_data(df):
     """
