@@ -1,0 +1,19 @@
+# Core Libraries
+pandas==1.5.3
+numpy==1.24.3
+scikit-learn==1.2.2
+xgboost==1.7.5
+joblib==1.2.0
+
+# Web Framework
+streamlit==1.24.1
+
+# Hugging Face Integration
+huggingface_hub==0.16.0
+
+# Data Visualization (optional but recommended)
+matplotlib==3.7.1
+seaborn==0.12.2
+
+# Utilities
+requests==2.31.0

@@ -1,0 +1,23 @@
+# Data Processing
+pandas==1.5.3
+numpy==1.24.3
+
+# Machine Learning
+scikit-learn==1.2.2
+xgboost==1.7.5
+joblib==1.2.0
+
+# Hugging Face
+huggingface_hub==0.16.0
+datasets==2.13.0
+
+# Visualization (for EDA in notebooks)
+matplotlib==3.7.1
+seaborn==0.12.2
+
+# MLflow for Experiment Tracking
+mlflow==2.5.0
+
+# Utilities
+requests==2.31.0
+python-dotenv==1.0.0
