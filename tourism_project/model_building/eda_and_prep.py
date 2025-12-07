@@ -46,66 +46,12 @@ def basic_eda(df):
         print(missing[missing > 0])
     else:
         print("   - No missing values found ✓")
-
-    # --- Data Cleaning and Preprocessing ---
-
-# Step 1: Remove duplicate rows if any
-df_clean = df.drop_duplicates()
-print(f"Duplicates removed: {len(df) - len(df_clean)}")
-
-# Step 2: Handle missing values
-print("\nMissing values before cleaning:")
-print(df_clean.isnull().sum())
-
-# Drop rows with missing values (if critical columns have NaN)
-df_clean = df_clean.dropna()
-
-# Step 3: Drop CustomerID as it's just an identifier (not useful for prediction)
-if 'CustomerID' in df_clean.columns:
-    df_clean = df_clean.drop(columns=['CustomerID'])
-    print("\nCustomerID column dropped (pure identifier)")
-
-# Step 4: Separate features and target
-target_col = 'ProdTaken'
-X = df_clean.drop(columns=[target_col])
-y = df_clean[target_col]
-
-print(f"\nFinal dataset shape: {X.shape}")
-print(f"Target distribution:")
-print(y.value_counts())
-
-# This column often appears when a CSV is saved with the DataFrame index.
-if 'Unnamed: 0' in df_clean.columns:
-    df_clean = df_clean.drop(columns=['Unnamed: 0'])
-    print("\n'Unnamed: 0' column dropped (was likely a redundant index).")
-elif 'unnamed: 0' in df_clean.columns.str.lower():
-    # Handle possible case variations
-    unnamed_col = df_clean.columns[df_clean.columns.str.lower().str.contains('unnamed: 0')][0]
-    df_clean = df_clean.drop(columns=[unnamed_col])
-    print(f"\n'{unnamed_col}' column dropped (was likely a redundant index).")
-
-# Step 5: Train-test split with stratification (to maintain class balance)
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
-
-print(f"\nTrain set: {X_train.shape}")
-print(f"Test set: {X_test.shape}")
-
-# Save splits for later use
-X_train.to_csv("tourism_project/model_building/X_train.csv", index=False)
-X_test.to_csv("tourism_project/model_building/X_test.csv", index=False)
-y_train.to_csv("tourism_project/model_building/y_train.csv", index=False)
-y_test.to_csv("tourism_project/model_building/y_test.csv", index=False)
-
-print("\nTrain/test splits saved successfully!")
-
     
-print("\n3. Target Distribution (ProdTaken):")
-print(df["ProdTaken"].value_counts(normalize=True).to_string())
+    print("\n3. Target Distribution (ProdTaken):")
+    print(df["ProdTaken"].value_counts(normalize=True).to_string())
     
-print("\n4. Data Types:")
-print(df.dtypes.to_string())
+    print("\n4. Data Types:")
+    print(df.dtypes.to_string())
 
 def clean_data(df):
     """
