@@ -8,7 +8,7 @@ xgboost==1.7.5
 joblib==1.2.0
 
 # Hugging Face
-huggingface_hub==0.16.0
+huggingface_hub==0.16.2
 datasets==2.13.0
 
 # Visualization (for EDA in notebooks)
