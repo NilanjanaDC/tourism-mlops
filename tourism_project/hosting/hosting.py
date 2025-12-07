@@ -15,7 +15,7 @@ HF_SPACE_REPO_ID = "nilanjanadevc/tourism-wellness-space"
 DEPLOYMENT_FOLDER = "tourism_project/deployment"
 
 # =============== Initialize HF API ===============
-api = HfApi(token=userdata.get('HF_TOKEN'))
+api = HfApi(token=os.getenv('HF_TOKEN'))
 
 def ensure_space_exists():
     """
