@@ -1,5 +1,4 @@
-
-name: Tourism MLOps Pipeline
+name: Tourism Project Pipeline
 
 on:
   push:
@@ -12,44 +11,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
+      
       - name: Install Dependencies
         run: pip install -r tourism_project/requirements.txt
-
+      
       - name: Upload Dataset to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           echo "✓ Dataset registration step (upload tourism.csv to HF)"
-          # Add your data_register.py script here
-          # python tourism_project/model_building/data_register.py
+          python tourism_project/model_building/data_register.py
 
   data-prep:
     needs: register-dataset
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
+      
       - name: Install Dependencies
         run: pip install -r tourism_project/requirements.txt
-
+      
       - name: Run Data Preparation & EDA
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           echo "✓ Running data preparation (cleaning, splitting, uploading to HF)"
-          # Add your eda_and_prep.py script here
-          # python tourism_project/model_building/eda_and_prep.py
+          python tourism_project/model_building/eda_and_prep.py
 
 
   model-training:
@@ -57,20 +54,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
+      
       - name: Install Dependencies
         run: pip install -r tourism_project/requirements.txt
-
+      
       - name: Start MLflow Server
         run: |
           nohup mlflow ui --host 0.0.0.0 --port 5000 &
           sleep 10
-
+      
       - name: Model Building, Training & Registration
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -78,8 +75,7 @@ jobs:
           echo "✓ Training RandomForest & XGBoost models with hyperparameter tuning"
           echo "✓ Logging experiments to MLflow"
           echo "✓ Uploading best model to HF Model Hub"
-          # Add your train.py script here
-          # python tourism_project/model_building/train.py
+          python tourism_project/model_building/train.py
 
 
   deploy-hosting:
@@ -87,15 +83,15 @@ jobs:
     needs: [model-training, data-prep, register-dataset]
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
+      
       - name: Install Dependencies
         run: pip install -r tourism_project/requirements.txt
-
+      
       - name: Push Deployment Files to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
