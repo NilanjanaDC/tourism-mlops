@@ -46,7 +46,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           echo "✓ Running data preparation (cleaning, splitting, uploading to HF)"
-          python tourism-mlops/model_building/eda_and_prep.py
+          python tourism_project/model_building/eda_and_prep.py
 
 
   model-training:
