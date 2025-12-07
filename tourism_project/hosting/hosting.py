@@ -7,6 +7,7 @@ Description: Automates the upload of the Streamlit app to HF Space for deploymen
 import os
 from huggingface_hub import HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError
+from google.colab import userdata
 
 
 # =============== Configuration ===============
@@ -14,7 +15,7 @@ HF_SPACE_REPO_ID = "nilanjanadevc/tourism-wellness-space"
 DEPLOYMENT_FOLDER = "tourism_project/deployment"
 
 # =============== Initialize HF API ===============
-api = HfApi(token=os.getenv('HF_TOKEN'))
+api = HfApi(token=userdata.get('HF_TOKEN'))
 
 def ensure_space_exists():
     """
