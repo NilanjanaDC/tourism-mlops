@@ -7,7 +7,7 @@ Description: Automates the upload of the Streamlit app to HF Space for deploymen
 import os
 from huggingface_hub import HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError
-from google.colab import userdata
+
 
 
 # =============== Configuration ===============
